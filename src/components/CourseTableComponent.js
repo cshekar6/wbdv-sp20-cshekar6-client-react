@@ -3,8 +3,8 @@ import CourseTableRow from "./CourseTableRow";
 
 const CourseTableComponent = ({courses, deleteCourse, showCourseEditor}) =>
     <div>
-        <h2>Course Table {courses.length}</h2>
-        <ul>
+        <table className="table table-striped">
+            <tbody>
             {
                 courses.map(function(course, index) {
                     return <CourseTableRow
@@ -14,6 +14,7 @@ const CourseTableComponent = ({courses, deleteCourse, showCourseEditor}) =>
                         course={course}/>
                 })
             }
-        </ul>
+            </tbody>
+        </table>
     </div>
 export default CourseTableComponent

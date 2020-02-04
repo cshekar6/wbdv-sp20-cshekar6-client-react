@@ -1,8 +1,7 @@
 import React from "react";
 import AddCourse from "./AddCourse";
 
-const CourseManagerHeader = () =>
-
+const CourseManagerHeader = ({display}) =>
 <nav className="navbar navbar-dark bg-primary">
     <div className="container-fluid">
 
@@ -19,7 +18,7 @@ const CourseManagerHeader = () =>
         </div>
 
         <div className="col-md-9 col-sm-11 col-10">
-            <AddCourse addCourse={AddCourse}/>
+            <AddCourse display={display}/>
         </div>
 
     </div>

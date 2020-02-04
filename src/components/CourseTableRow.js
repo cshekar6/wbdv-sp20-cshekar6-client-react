@@ -1,5 +1,4 @@
 import React from "react";
-import {updateCourse} from "../services/CourseService";
 
 class CourseTableRow extends React.Component {
     constructor(props) {
@@ -13,33 +12,24 @@ class CourseTableRow extends React.Component {
 
     render() {
         return(
-            <li>
-                {   !this.state.editing &&
-                    <a href="#" onClick={this.props.showCourseEditor}>
-                        {this.state.course.title}
-                    </a>
-                }
-                {
-                    this.state.editing &&
-                    <input
-                        onChange={(e) => this.setState({
-                                                           course: {
-                                                               ...this.state.course,
-                                                               title: e.target.value
-                                                           }
-                                                       })}
-                        value={this.state.course.title}/>
-                }
-                <button onClick={() => this.props.deleteCourse(this.props.course)}>Delete</button>
-                <button onClick={() => this.setState({editing: true})}>Edit</button>
-                <button onClick={(e) => {
-                    updateCourse(this.state.course._id, this.state.course).then(status => {})
-                    this.setState({
-                                      editing: false
-                                  })
-                }}>Save</button>
-            </li>
-        )
+                <tr>
+                    <td><i className="material-icons"
+                           style={{background:"blue", color:"white"}}>subject</i>
+                        {this.props.course.title}
+                    </td>
+                    <td className="d-none d-sm-table-cell wbdv-row wbdv-owner">
+                        me
+                    </td>
+                    <td className="d-none d-md-table-cell wbdv-row wbdv-modified-date">
+                        {new Date().toLocaleTimeString()}
+                    </td>
+                    <td>
+                        <button onClick={() => this.props.deleteCourse(this.props.course)}
+                                className="btn text-danger fa fa-2x fa-trash"></button>
+                    </td>
+                </tr>
+
+                )
     }
 }
 
