@@ -1,9 +1,9 @@
 import React from "react";
 import CourseTableRow from "./CourseTableRow";
 
-const CourseTableComponent = ({courses, deleteCourse, showCourseEditor}) =>
+const CourseTableComponent = ({courses, deleteCourse, showCourseEditor,display}) =>
     <div>
-        <table className="table table-striped">
+        <table className="table table-striped table-hover table-light">
             <tbody>
             {
                 courses.map(function(course, index) {
@@ -11,7 +11,8 @@ const CourseTableComponent = ({courses, deleteCourse, showCourseEditor}) =>
                         showCourseEditor={showCourseEditor}
                         deleteCourse={deleteCourse}
                         key={course._id}
-                        course={course}/>
+                        course={course}
+                        display={display}/>
                 })
             }
             </tbody>
