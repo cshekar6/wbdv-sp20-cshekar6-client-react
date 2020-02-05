@@ -1,12 +1,14 @@
-import React from "react";
+import React from 'react'
 import ModuleListItem from "./ModuleListItem";
+import "./CourseEditor.css"
 
 const ModuleList = ({modules}) =>
-    <ul>
+    <ul className="list-group wbdv-module-list">
+
         {
-            modules.map(module =>
+            modules.map((module, index) =>
                             <ModuleListItem
-                                key={module._id}
+                                key={index}
                                 module={module}/>
             )
         }

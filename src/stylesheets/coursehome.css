@@ -3,10 +3,12 @@
     color: red;
     background: white;
 }
+
 .btn-remove {
     background: none !important;
     border: none !important;
 }
+
 .bottomRight {
     float: right;
     position: relative;

@@ -1,2 +1,2 @@
-export const API_URL = "https://wbdv-generic-server.herokuapp.com/api/cshekar86/courses"
-export const DEFAULT_CLASS_SIZE = 50
+export const API_URL = "https://wbdv-generic-server.herokuapp.com/api/cshekar86/courses";
+export const DEFAULT_CLASS_SIZE = 50;
