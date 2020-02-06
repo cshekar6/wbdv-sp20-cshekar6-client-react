@@ -3,13 +3,17 @@ import {updateCourse} from "../services/CourseService";
 import "../stylesheets/coursehome.css"
 
 class CourseTableRow extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     state = {
         editing: false,
-        course: this.props.course
+        course: this.props.course,
+        selectedRow: -1
     };
     render() {
         return (
-            <tr>
+            <tr className={this.state.selectedRow === this.props.key ? "tableSelected" : "" }>
                 {
                     !this.state.editing &&
                     <td>
