@@ -7,6 +7,8 @@ const CourseTableComponent = ({courses, deleteCourse, showCourseEditor, display}
     {
         courses.map(function (course, index) {
             return <CourseTableRow
+                showCourseEditor={showCourseEditor}
+                deleteCourse={deleteCourse}
                 key={course._id}
                 course={course}
                 display={display}/>
