@@ -88,13 +88,14 @@ class CourseManagerComponent extends React.Component {
                                      display={this.display}/>}
 
                             </table>
-                                <button className="btn-remove bottom-right">
-                                    <i className="fas fa-2x fa-plus-circle"></i>
-                                </button>
                             {this.state.layout === 'grid' &&
                              <CourseGridComponent courses={this.state.courses}
                                                   deleteCourse={this.deleteCourse}/>
                             }
+
+                            <button className="btn-remove bottom-right">
+                                <i className="fas fa-2x fa-plus-circle"></i>
+                            </button>
 
                         </div>
                     </div>
