@@ -8,6 +8,20 @@
     background: none !important;
     border: none !important;
 }
+.wbdv-delete-course {
+    color: red;
+}
+
+.wbdv-edit-course {
+    color: black;
+}
+
+.wbdv-save-course {
+    color: limegreen;
+}
+.size {
+    font-size: xx-large;
+}
 
 .bottom-right {
     float: right;

@@ -1,5 +1,6 @@
 import React from "react";
 import {updateCourse} from "../services/CourseService";
+import "../stylesheets/coursehome.css"
 
 class CourseTableRow extends React.Component {
     state = {
@@ -47,13 +48,13 @@ class CourseTableRow extends React.Component {
                      <button onClick={() => this.setState({
                                                               editing: true
                                                           })}
-                             className="btn-remove wbdv-button wbdv-add-course">
+                             className="btn-remove wbdv-button wbdv-edit-course">
                          <i className="material-icons">
                              edit
                          </i>
                      </button>
 
-                     <button className="btn-remove wbdv-button wbdv-add-course">
+                     <button className="btn-remove wbdv-button wbdv-delete-course">
                          <i onClick={() => this.props.deleteCourse(this.props.course)}
                             className="material-icons">
                              delete
@@ -63,7 +64,7 @@ class CourseTableRow extends React.Component {
                 {
                     this.state.editing &&
                     <td>
-                        <button className="btn-remove wbdv-button wbdv-add-course"
+                        <button className="btn-remove wbdv-button wbdv-save-course"
                                 onClick={(e) => {
                                     updateCourse(this.state.course._id, this.state.course)
                                         .then(() => {
@@ -72,7 +73,7 @@ class CourseTableRow extends React.Component {
                                     this.setState({
                                                       editing: false
                                                   })
-                                }}><i className="material-icons">done</i>
+                                }}><i className="material-icons size">done</i>
 
                         </button>
 
