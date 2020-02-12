@@ -10,7 +10,8 @@ const CourseManagerHeader = ({display}) =>
                         data-toggle="collapse" data-target="#navbarContent"
                         aria-controls="navbarContent" aria-expanded="true"
                         aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"/></button>
+                    <span className="navbar-toggler-icon"/>
+                </button>
             </div>
 
             <div className="col-md-2 d-none d-lg-block">

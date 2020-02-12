@@ -1,6 +1,6 @@
 import {API_URL,MODULE_API_URL} from "../common/constants";
 
-export const createModule = (courseId,module) => {
+export const createModule = (courseId,module) =>
     fetch(`${API_URL}/${courseId}/modules`,{
         method: "POST",
             body: JSON.stringify(module),
@@ -8,14 +8,14 @@ export const createModule = (courseId,module) => {
             'Content-Type': 'application/json'
         }
     }).then(response => response.json())
-};
+
 
 export const findModuleForCourse = (courseId) =>
     fetch(`${API_URL}/${courseId}/modules`)
-        .then(response => response.json());
+        .then(response => response.json())
 
 export const findModule = (moduleId) =>
-    fetch(`${MODULE_API_URL}/${moduleId}`).then(response => response.json());
+    fetch(`${MODULE_API_URL}/${moduleId}`).then(response => response.json())
 
 export const updateModule = (moduleId, module) =>
     fetch(`${MODULE_API_URL}/${moduleId}`, {
@@ -24,17 +24,17 @@ export const updateModule = (moduleId, module) =>
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(response => response.json());
+    }).then(response => response.json())
 
 export const deleteModule = (moduleId) =>
     fetch(`${MODULE_API_URL}/${moduleId}`, {
         method: "DELETE"
     })
-        .then(response => response.json());
+        .then(response => response.json())
 
 export default {
-    deleteModule,
     findModuleForCourse,
+    deleteModule,
     createModule,
     findModule,
     updateModule

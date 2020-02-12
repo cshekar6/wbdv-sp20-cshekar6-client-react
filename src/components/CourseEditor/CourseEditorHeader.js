@@ -8,7 +8,7 @@ const CourseEditorHeader = () =>
                 <div className="col-3">
                     <div className="row">
                         <span className="col-3 wbdv-course-editor wbdv-close">
-                            <a href="../index.html">
+                            <a href="/">
                                 <i className="fa fa-times fa-2x custom-cross-icon"></i>
                             </a>
                         </span>

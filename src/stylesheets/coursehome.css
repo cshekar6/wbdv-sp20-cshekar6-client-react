@@ -16,6 +16,10 @@
     color: black;
 }
 
+.wbdv-edit-course-right {
+    float: right
+}
+
 .wbdv-save-course {
     color: limegreen;
 }

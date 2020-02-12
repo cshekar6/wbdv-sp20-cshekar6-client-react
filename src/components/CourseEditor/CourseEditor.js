@@ -1,40 +1,33 @@
-import React, {Component} from 'react'
-import ModuleList from "../CourseEditor/ModuleList";
+import React from 'react'
 import LessonTabs from "../CourseEditor/LessonTabs";
 import TopicPills from "../CourseEditor/TopicPills";
 import "./CourseEditor.css"
+import {Provider} from "react-redux";
+import moduleReducer from "../../reducers/moduleReducer";
+import lessonReducer from "../../reducers/lessonReducer";
+import {combineReducers, createStore} from "redux";
 
-export default class CourseEditor extends Component {
-    render() {
-        return (
+import ModuleListContainer from "../../container/ModuleListContainer";
+
+const reducers = combineReducers({
+                                     moduleReducer, lessonReducer
+                                 })
+
+const store = createStore(reducers);
+const  CourseEditor  = ( {match, courseId, moduleId, history }) =>
+            <Provider store={store}>
             <div>
                 <div className="row toppad">
                     <div className="col-3 dark-background">
-                        <ModuleList
-                            modules={[
-                                {_id: "123", title: "CSS"},
-                                {_id: "234", title: "HTML"},
-                                {_id: "345", title: "React JS"},
-                                {_id: "456", title: "Redux"},
-                                {_id: "567", title: "JS"},
-                                {_id: "678", title: "Angular"}
-                            ]}/>
-                        <div className="topic-add">
-                            <button className="btn topic-adder-btn wbdv-module-item-add-btn">
-                                <i className="text-white fas fa-plus"></i></button>
-                        </div>
-
+                        <ModuleListContainer
+                            moduleId={moduleId}
+                            history={history}
+                            courseId={courseId}
+                             />
                     </div>
                     <div className="col-9">
                         <LessonTabs
-                            lessons={[
-                                {_id: "123", title: "Lesson1"},
-                                {_id: "234", title: "Lesson2"},
-                                {_id: "345", title: "Lesson3"},
-                                {_id: "456", title: "Lesson4"},
-                                {_id: "567", title: "Lesson5"},
-                                {_id: "678", title: "Lesson6"}
-                            ]}
+                            moduleId={moduleId}
                         />
                         <TopicPills
                             topics={[
@@ -50,6 +43,6 @@ export default class CourseEditor extends Component {
                     </div>
                 </div>
             </div>
-        )
-    }
-}
+            </Provider>
+
+export default CourseEditor

@@ -1,6 +1,7 @@
 import React from "react";
 import {updateCourse} from "../services/CourseService";
-import "../stylesheets/coursehome.css"
+import "../stylesheets/coursehome.css";
+import {Link,BrowserRouter} from "react-router-dom";
 
 class CourseTableRow extends React.Component {
     state = {
@@ -15,9 +16,9 @@ class CourseTableRow extends React.Component {
                     <td>
                         <i className="material-icons"
                            style={{background: "blue", color: "white"}}>subject</i>
-                        <a href="#" onClick={this.props.showCourseEditor}>
-                            {this.props.course.title}
-                        </a>
+                            <Link to={`/course/${this.state.course._id}`}>
+                                {this.state.course.title}
+                            </Link>
                     </td>
                 }
 
