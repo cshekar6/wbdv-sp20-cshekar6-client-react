@@ -8,13 +8,14 @@ import lessonReducer from "../../reducers/lessonReducer";
 import {combineReducers, createStore} from "redux";
 
 import ModuleListContainer from "../../container/ModuleListContainer";
+import topicReducer from "../../reducers/topicReducer";
 
 const reducers = combineReducers({
-                                     moduleReducer, lessonReducer
+                                     moduleReducer, lessonReducer,topicReducer
                                  })
 
 const store = createStore(reducers);
-const  CourseEditor  = ( {match, courseId, moduleId, history }) =>
+const  CourseEditor  = ( {match, courseId, moduleId, history,lessonId}) =>
             <Provider store={store}>
             <div>
                 <div className="row toppad">
@@ -27,18 +28,15 @@ const  CourseEditor  = ( {match, courseId, moduleId, history }) =>
                     </div>
                     <div className="col-9">
                         <LessonTabs
+                            courseId={courseId}
+                            history={history}
                             moduleId={moduleId}
                         />
                         <TopicPills
-                            topics={[
-                                {_id: "123", title: "Topic1"},
-                                {_id: "234", title: "Topic2"},
-                                {_id: "345", title: "Topic3"},
-                                {_id: "456", title: "Topic4"},
-                                {_id: "567", title: "Topic5"},
-                                {_id: "678", title: "Topic6"}
-                            ]}
-
+                            history={history}
+                            moduleId={moduleId}
+                            lessonId={lessonId}
+                            courseId={courseId}
                         />
                     </div>
                 </div>

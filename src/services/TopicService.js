@@ -1,6 +1,6 @@
 import {LESSONS_API_URL,TOPIC_API_URL} from "../common/constants";
 
-export const createTopic = (lessonId,topic) => {
+export const createTopic = (lessonId,topic) =>
     fetch(`${LESSONS_API_URL}/${lessonId}/topics`,{
         method: "POST",
         body: JSON.stringify(topic),
@@ -8,7 +8,7 @@ export const createTopic = (lessonId,topic) => {
             'Content-Type': 'application/json'
         }
     }).then(response => response.json())
-};
+
 
 export const findTopicsForLesson = (lessonId) =>
     fetch(`${LESSONS_API_URL}/${lessonId}/topics`)

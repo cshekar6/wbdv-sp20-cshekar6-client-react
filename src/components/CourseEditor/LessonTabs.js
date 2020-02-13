@@ -6,12 +6,12 @@ import "../../stylesheets/coursehome.css"
 class LessonTabs extends React.Component {
 
     componentDidMount() {
-        this.props.findLessonsForModule(this.props.moduleId)
+        this.props.findLessonForModule(this.props.moduleId).then()
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.moduleId !== prevProps.moduleId) {
-            this.props.findLessonsForModule(this.props.moduleId)
+            this.props.findLessonForModule(this.props.moduleId).then()
         }
     }
 
@@ -30,10 +30,12 @@ class LessonTabs extends React.Component {
                 {
                     this.props.lessons && this.props.lessons.map(lesson =>
                      <li className="nav-item"
-                         onClick={() => this.setState(
+                         onClick={() => {
+                             this.props.history.push(`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${lesson._id}`)
+                             this.setState(
                              {
                                  selectedLessonId: lesson._id
-                             })}
+                             })}}
                          key={lesson._id}>
                          <a className={`nav-link ${(this.state.editingLessonId === lesson._id || this.state.selectedLessonId === lesson._id) ? 'active' : ''}`}>
                              {this.state.editingLessonId !== lesson._id &&
@@ -80,6 +82,7 @@ class LessonTabs extends React.Component {
                                  this.state.editingLessonId !== lesson._id &&
                                  <button className="btn-remove wbdv-button wbdv-edit-course wbdv-edit-course-right"
                                      onClick={() => {
+                                         this.props.history.push(`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${lesson._id}`)
                                          this.setState({
                                                            lesson: lesson,
                                                            editingLessonId: lesson._id
@@ -107,7 +110,7 @@ const stateToPropertyMapper = (state) => ({
 })
 
 const dispatcherToPropertyMapper = (dispatcher) => ({
-    findLessonsForModule: moduleId =>
+    findLessonForModule: moduleId =>
         fetch(MODULES_LESSONS_API_URL(moduleId))
             .then(response => response.json())
             .then(lessons => dispatcher({
