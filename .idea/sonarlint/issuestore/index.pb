@@ -23,3 +23,15 @@ W
 'src/container/CourseManagerComponent.js,6/5/650c4e76ee9b8d4f3a60f575ff7da6ba87b7b7f8
 M
 src/services/CourseService.js,1/3/134b94d760aa1da497d64432dfd6212a6239ede0
+[
++src/components/CourseEditor/CourseEditor.js,d/7/d77c43232c19736cb81f7515ad47f0e291311d2d
+]
+-src/components/CourseEditor/ModuleListItem.js,4/c/4c6ed3331a789441585671e3fb55aa7b53e5f84f
+L
+src/actions/moduleActions.js,2/1/21a99fb906e7ac66a3c190b9741a89e52faa1f70
+Y
+)src/components/CourseEditor/ModuleList.js,f/5/f5561237832e16b03b361cf5dc65c9232c9cbfef
+Y
+)src/components/CourseEditor/TopicPills.js,e/c/ec83821612cc96f688a5406a77f3116296ef269d
+U
+%src/components/CourseListComponent.js,6/1/6147bc24374429c562df028e4c0d668bd787fcf2
