@@ -45,7 +45,6 @@ class WidgetLists extends Component {
 
         widget.text = newHeading
         widget.size = newSize
-        console.log('Before Sending : '+JSON.stringify(widget))
         this.setState({
                           updated: true
                       })
@@ -55,6 +54,9 @@ class WidgetLists extends Component {
     {
         let newHeading = document.getElementById(widget.id+'-para').value
         widget.text = newHeading
+        this.setState({
+                          updated: true
+                      })
         this.props.updateWidget(widget.id,widget).then()
     }
     updateType = (widget) =>
