@@ -50,9 +50,6 @@ class WidgetLists extends Component {
                           updated: true
                       })
         this.props.updateWidget(widget.id,widget).then()
-        this.componentDidMount()
-        this.componentDidMount()
-
     }
     updateParagraphWidget = (widget) =>
     {
@@ -116,7 +113,7 @@ class WidgetLists extends Component {
                             <span className="slider round"></span>
                         </label>
                     </div>
-                    <button type="button" className="ml-2 pull-right btn btn-success">Save</button>
+                    <button onClick={() => this.updatePage()} type="button" className="ml-2 pull-right btn btn-success">Save</button>
                 </div>
 
 
@@ -171,6 +168,9 @@ class WidgetLists extends Component {
         )
     }
 
+    updatePage() {
+        this.componentDidMount()
+    }
 }
 const stateToPropertyMapper = (state) => ({
     widgets: state.widgetReducer.widgets
