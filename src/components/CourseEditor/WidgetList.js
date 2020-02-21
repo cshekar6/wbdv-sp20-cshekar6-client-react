@@ -16,7 +16,7 @@ const WidgetList = () =>
         </div>
 
 
-        <div className="container-fluid custom-widgets">
+        <div className="container-fluid custom-widgetReducer">
             <div className="row">
                 <div className="col-7">
                     <h1>Heading widget</h1>

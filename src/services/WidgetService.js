@@ -1,5 +1,5 @@
 import {WIDGET_API_URL,WIDGET_TOPIC_URL} from "../common/constants";
-export const createWidget = (tid, widget) => {
+export const createWidget = (tid, widget) =>
  fetch(WIDGET_TOPIC_URL(tid), {
      method: "POST",
      body: JSON.stringify(widget),
@@ -7,21 +7,24 @@ export const createWidget = (tid, widget) => {
          'Content-Type': 'application/json'
      }
  }).then(r => r.json())
-}
 
-export const findWidgetsForTopic =(tid) => {
+
+export const findWidgetsForTopic =(tid) =>
     fetch(WIDGET_TOPIC_URL(tid)).then(r => r.json())
-}
 
-export const findAllWidgets = () => {
+export const findWidgetsForTopicUp = (tid,wid,direction) =>
+    fetch(`${WIDGET_TOPIC_URL(tid)}/${wid}/${direction}`).then(r => r.json())
+
+
+export const findAllWidgets = () =>
     fetch(WIDGET_API_URL).then(r=> r.json())
-}
 
-export const findWidgetById = (wid) => {
+
+export const findWidgetById = (wid) =>
     fetch(`${WIDGET_API_URL}/${wid}`).then(r => r.json())
-}
 
-export const updateWidget = (wid, widget) => {
+
+export const updateWidget = (wid, widget) =>
     fetch(`${WIDGET_API_URL}/${wid}`, {
         method: "PUT",
         body: JSON.stringify(widget),
@@ -29,13 +32,13 @@ export const updateWidget = (wid, widget) => {
             'Content-Type': 'application/json'
         }
     }).then(r => r.json())
-}
 
-export const deleteWidget = (wid) => {
+
+export const deleteWidget = (wid) =>
     fetch(`${WIDGET_API_URL}/${wid}`,{
         method:"DELETE"
     }).then(r => r.json())
-}
+
 
 
 

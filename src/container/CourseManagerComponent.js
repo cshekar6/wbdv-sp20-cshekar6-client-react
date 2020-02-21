@@ -115,6 +115,18 @@ class CourseManagerComponent extends React.Component {
                              hideEditor={this.hideEditor}/>
                      }/>
 
+                 <Route
+                     path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
+                     exact={true}
+                     render={(props) =>
+                         <CourseEditor
+                             {...props}
+                             lessonId={props.match.params.lessonId}
+                             moduleId={props.match.params.moduleId}
+                             courseId={props.match.params.courseId}
+                             topicId={props.match.params.topicId}/>
+                     }/>
+
              </Router>
             </div>
 

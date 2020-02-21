@@ -10,8 +10,6 @@ class TopicPills extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log("chandu check "+ this.props.lessonId )
-        console.log("chandu check "+ prevProps.lessonId)
         if (this.props.lessonId !== prevProps.lessonId) {
             this.props.findTopicsForLesson(this.props.lessonId)
         }
@@ -33,10 +31,12 @@ class TopicPills extends React.Component {
                     {
                         this.props.topics && this.props.topics.map((topic) =>
                                                                        <li className="nav-item wbdv-topic-pill"
-                                                                           onClick={() => this.setState(
+                                                                           onClick={() => {
+                                                                               this.props.history.push(`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${topic._id}`)
+                                                                               this.setState(
                                                                                {
                                                                                    selectedTopicId: topic._id
-                                                                               })}
+                                                                               })}}
                                                                            key={topic._id}>
                                                                            <a className={`nav-link ${(this.state.editingTopicId
                                                                                                       === topic._id
@@ -99,6 +99,7 @@ class TopicPills extends React.Component {
                                                                                    <button
                                                                                        className="btn-remove wbdv-button wbdv-edit-course wbdv-edit-course-right"
                                                                                        onClick={() => {
+                                                                                           this.props.history.push(`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${topic._id}`)
                                                                                            this.setState(
                                                                                                {
                                                                                                    topic: topic,
@@ -122,7 +123,6 @@ class TopicPills extends React.Component {
                         </div>
                     </li>
                 </ul>
-                <WidgetList/>
             </div>)
     }
 }
