@@ -56,8 +56,6 @@ class WidgetLists extends Component {
         let newHeading = document.getElementById(widget.id+'-para').value
         widget.text = newHeading
         this.props.updateWidget(widget.id,widget).then()
-        this.componentDidMount()
-        this.componentDidMount()
     }
     updateType = (widget) =>
     {
