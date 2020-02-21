@@ -24,14 +24,16 @@ class WidgetLists extends Component {
         }
     }
     componentDidMount() {
-        this.props.findWidgetsForTopic(this.props.topicId);
+        this.props.findWidgetsForTopic(this.props.topicId).then()
     }
     componentDidUpdate(prevProps, prevState, snapshot){
         if(this.state.updated) {
-            this.state.updated = false
+            this.setState({
+                              updated: false
+                          })
         }
         if(prevProps.topicId !== this.props.topicId) {
-            this.props.findWidgetsForTopic(this.props.topicId);
+            this.props.findWidgetsForTopic(this.props.topicId).then()
         }
 
 
@@ -44,8 +46,10 @@ class WidgetLists extends Component {
         widget.text = newHeading
         widget.size = newSize
         console.log('Before Sending : '+JSON.stringify(widget))
-        this.state.updated = true
-        this.props.updateWidget(widget.id,widget)
+        this.setState({
+                          updated: true
+                      })
+        this.props.updateWidget(widget.id,widget).then()
         this.componentDidMount()
         this.componentDidMount()
 
@@ -54,7 +58,7 @@ class WidgetLists extends Component {
     {
         let newHeading = document.getElementById(widget.id+'-para').value
         widget.text = newHeading
-        this.props.updateWidget(widget.id,widget)
+        this.props.updateWidget(widget.id,widget).then()
         this.componentDidMount()
         this.componentDidMount()
     }
@@ -62,7 +66,7 @@ class WidgetLists extends Component {
     {
         let type = document.getElementById(widget.id+'-selector').value
         widget.type = type
-        this.props.updateWidget(widget.id,widget)
+        this.props.updateWidget(widget.id,widget).then()
         this.componentDidMount()
         this.componentDidMount()
     }
@@ -81,26 +85,29 @@ class WidgetLists extends Component {
     }
     moveUp = (widget) =>
     {
-        this.props.findWidgetsForTopicUp(this.props.topicId,widget.id,1)
+        this.props.findWidgetsForTopicUp(this.props.topicId,widget.id,1).then()
         this.componentDidMount()
         this.componentDidMount()
     }
     moveDown = (widget) =>
     {
-        this.props.findWidgetsForTopicUp(this.props.topicId,widget.id,2)
+        this.props.findWidgetsForTopicUp(this.props.topicId,widget.id,2).then()
         this.componentDidMount()
         this.componentDidMount()
     }
     removeWidget = (id) =>
     {
-        this.state.updated = true
-        this.props.deleteWidget(id)
+        this.setState({
+                          updated:true
+                      })
+        this.props.deleteWidget(id).then()
 
     }
 
     render(){
         return(
-            <div>
+
+            <div >
                 <div className="row mb-2 ">
                     <div className="offset-9">
                         <span className="h5 ml-3 mr-3">Preview</span>
@@ -109,9 +116,11 @@ class WidgetLists extends Component {
                             <span className="slider round"></span>
                         </label>
                     </div>
-                    <button type="button" className="pull-right btn btn-success">Save</button>
+                    <button type="button" className="ml-2 pull-right btn btn-success">Save</button>
                 </div>
 
+
+                <div className="scroll">
                 <ul className="list-group m-0" id="widget-list">
                     {
 
@@ -124,15 +133,15 @@ class WidgetLists extends Component {
                                                                <button className="btn btn-up btn-warning"  href="#" onClick={()=>this.moveUp(widget)}>
                                                                    <i className="custom-arrow fa fa-arrow-up mr-2 p-2"></i>
                                                                </button>
-                                                               <button className="btn btn-down btn-warning"  href="#" onClick={()=>this.moveDown(widget)}>
+                                                               <button className="btn btn-down btn-warning ml-2"  href="#" onClick={()=>this.moveDown(widget)}>
                                                                    <i className="custom-arrow fa fa-arrow-down mr-2 p-2"></i>
                                                                </button>
 
-                                                               <select id={widget.id+'-selector'} defaultValue="HEADING" value={widget.type} onChange={()=>this.updateType(widget)}>
+                                                               <select className="ml-2" id={widget.id+'-selector'} defaultValue="HEADING" value={widget.type} onChange={()=>this.updateType(widget)}>
                                                                    <option value="HEADING" >Heading</option>
                                                                    <option value="PARAGRAPH">Paragraph</option>
                                                                </select>
-                                                               <button className="ml-1 col-1 p-1 btn btn-danger" onClick={() => this.removeWidget(widget.id,widget.type)}>
+                                                               <button className="ml-2 col-1 p-1 btn btn-danger" onClick={() => this.removeWidget(widget.id,widget.type)}>
                                                                    <i className="fa fa-times-circle"></i>
                                                                </button>
                                                            </div>
@@ -153,9 +162,11 @@ class WidgetLists extends Component {
                     }
 
                 </ul>
-                <button className="btn btn-danger pull-right m-4" id="add-widget"  onClick={() => this.props.createWidget(this.props.topicId)
+                </div>
+                <button className="btn btn-danger add-widget-button m-4" id="add-widget"  onClick={() => this.props.createWidget(this.props.topicId)
                 }><i className="fa fa-plus"></i></button>
             </div>
+
 
         )
     }

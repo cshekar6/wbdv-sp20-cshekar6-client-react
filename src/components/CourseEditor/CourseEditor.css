@@ -110,3 +110,9 @@ input:checked + .slider:before {
     position: relative;
     padding-top: 58px;
 }
+.scroll{
+    max-height: 480px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
