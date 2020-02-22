@@ -169,6 +169,7 @@ class WidgetLists extends Component {
     }
 
     updatePage() {
+        alert("Sucessfully saved")
         this.componentDidMount()
     }
 }
