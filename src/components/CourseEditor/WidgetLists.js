@@ -122,7 +122,7 @@ class WidgetLists extends Component {
                     {
 
                         this.props.widgets.map((widget, index) =>
-                                                   <li key={index} className="list-group-item widget-list-item">
+                                                   <li key={index} className="mt-2 list-group-item-dark list-group-item widget-list-item">
                                                        { !this.state.preview &&
                                                        <div className="row mb-2">
                                                            <div className="col-7 h1">{widget.type} Widget</div>
