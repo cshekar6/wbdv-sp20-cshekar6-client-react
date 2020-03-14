@@ -71,6 +71,7 @@ class TopicPills extends React.Component {
                                                    this.state.topic)
                                                this.setState(
                                                    {
+                                                       topic: topic,
                                                        editingTopicId: ''
                                                    })
                                                this.componentDidMount()
