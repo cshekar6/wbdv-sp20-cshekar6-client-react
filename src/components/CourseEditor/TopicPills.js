@@ -68,15 +68,14 @@ class TopicPills extends React.Component {
                                            className="btn-remove wbdv-button wbdv-save-course"
                                            onClick={() => {
                                                this.props.updateTopic(
-                                                   this.state.topic).then(() => {
-                                                   this.componentDidMount()
-                                                   this.updateTopicList()
-                                                   this.componentDidMount()
-                                               })
+                                                   this.state.topic)
                                                this.setState(
                                                    {
                                                        editingTopicId: ''
                                                    })
+                                               this.componentDidMount()
+                                               this.updateTopicList()
+                                               this.componentDidMount()
                                            }
                                            }>
                                            <i className="material-icons size">done</i>
