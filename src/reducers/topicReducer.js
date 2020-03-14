@@ -16,9 +16,7 @@ const topicReducer = (state = {topics: []}, action) => {
 
         case 'UPDATE_TOPIC':
             return {
-                topics: state.topics.map(topic =>
-                                             topic.id === action.topicId ? action.topic : topic
-                )
+                topics: state.topics.map(topic => topic.id === action.topicId ? action.topic : topic)
             }
         case 'FIND_TOPICS_FOR_LESSON':
             return {

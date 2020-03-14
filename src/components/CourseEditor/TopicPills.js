@@ -23,10 +23,6 @@ class TopicPills extends React.Component {
         }
     }
 
-    updateTopicList = () => {
-        this.props.findTopicsForLesson(this.props.lessonId)
-    }
-
     render() {
         return (
             <div className="topics mt-4">
@@ -74,9 +70,6 @@ class TopicPills extends React.Component {
                                                        topic: topic,
                                                        editingTopicId: ''
                                                    })
-                                               this.componentDidMount()
-                                               this.updateTopicList()
-                                               this.componentDidMount()
                                            }
                                            }>
                                            <i className="material-icons size">done</i>
