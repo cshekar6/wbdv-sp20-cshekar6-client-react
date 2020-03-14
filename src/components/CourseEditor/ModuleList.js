@@ -22,16 +22,14 @@ export default class ModuleList extends React.Component {
                              key={module._id}
                              edit={() => {
                                  const moduleId = module._id
-                                 this.props.history.push(
-                                     `/course/${this.props.courseId}/module/${moduleId}`)
+                                 this.props.history.push(`/course/${this.props.courseId}/module/${moduleId}`)
                                  this.setState({
                                                    editingModuleId: module._id
                                                })
                              }}
                              select={() => {
                                  const moduleId = module._id
-                                 this.props.history.push(
-                                     `/course/${this.props.courseId}/module/${moduleId}`)
+                                 this.props.history.push(`/course/${this.props.courseId}/module/${moduleId}`)
                                  this.setState({
                                                    activeModuleId: module._id
                                                })
