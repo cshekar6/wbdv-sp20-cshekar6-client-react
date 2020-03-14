@@ -4,14 +4,16 @@ const HeadingWidget = ({updateHeadingWidget,widget,preview}) =>
     <div className="heading-widget">
         {!preview &&
             <div className="element-container">
+
                 <div className="form-group row">
                     <label className="col-sm-2 col-form-label">Widget Name</label>
                     <div className="col-sm-10">
-                        <input className="form-control" placeholder="Heading text"
-                               id={widget.id + '-title'} required="" value={widget.title}
+                        <input className="form-control" placeholder="New Widget"
+                               id={widget.id + '-title'} required="" value={widget.name}
                                onChange={() => updateHeadingWidget(widget)}/>
                     </div>
                 </div>
+
                 <div className="form-group row">
                     <label className="col-sm-2 col-form-label">Heading Text</label>
                     <div className="col-sm-10">
@@ -20,6 +22,7 @@ const HeadingWidget = ({updateHeadingWidget,widget,preview}) =>
                                onChange={() => updateHeadingWidget(widget)}/>
                     </div>
                 </div>
+
                 <div className="form-group row">
                     <label className="col-sm-2 col-form-label">Heading Size</label>
                     <div className="col-sm-10">

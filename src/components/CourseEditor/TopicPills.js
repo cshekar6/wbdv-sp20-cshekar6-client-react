@@ -1,5 +1,4 @@
 import React from 'react'
-import WidgetList from "./WidgetList";
 import {createTopic, deleteTopic, findTopicsForLesson} from "../../services/TopicService"
 import {LESSONS_TOPICS_API_URL, TOPIC_API_URL} from "../../common/constants";
 import {connect} from "react-redux";
@@ -20,7 +19,7 @@ class TopicPills extends React.Component {
         editingTopicId: '',
         topic: {
             title: '',
-            _id: ''
+            id: ''
         }
     }
 
@@ -30,89 +29,90 @@ class TopicPills extends React.Component {
                 <ul className="nav nav-pills wbdv-topic-pill-list">
                     {
                         this.props.topics && this.props.topics.map((topic) =>
-                                                                       <li className="nav-item wbdv-topic-pill"
-                                                                           onClick={() => {
-                                                                               this.props.history.push(`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${topic._id}`)
-                                                                               this.setState(
-                                                                               {
-                                                                                   selectedTopicId: topic._id
-                                                                               })}}
-                                                                           key={topic._id}>
-                                                                           <a className={`nav-link ${(this.state.editingTopicId
-                                                                                                      === topic._id
-                                                                                                      || this.state.selectedTopicId
-                                                                                                      === topic._id)
-                                                                                                     ? 'active'
-                                                                                                     : ''}`}>
-                                                                               {this.state.editingTopicId
-                                                                                !== topic._id &&
-                                                                                <span>{topic.title}</span>}
-                                                                               {this.state.editingTopicId
-                                                                                === topic._id &&
-                                                                                <input
-                                                                                    onChange={(e) => {
-                                                                                        const newTitle = e.target.value
-                                                                                        this.setState(
-                                                                                            prevState => ({
-                                                                                                topic: {
-                                                                                                    ...prevState.topic,
-                                                                                                    title: newTitle
-                                                                                                }
-                                                                                            }))
-                                                                                    }}
-                                                                                    value={this.state.topic.title}/>}
-                                                                               {
-                                                                                   this.state.editingTopicId === topic._id &&
-                                                                                   <button
-                                                                                       className="btn-remove wbdv-button wbdv-save-course"
-                                                                                       onClick={() => {
-                                                                                           this.props.updateTopic(
-                                                                                               this.state.topic)
-                                                                                           this.setState(
-                                                                                               {
-                                                                                                   editingTopicId: ''
-                                                                                               })
-                                                                                           this.componentDidMount()
-                                                                                           this.componentDidMount()
+                           <li className="nav-item wbdv-topic-pill"
+                               onClick={() => {
+                                   this.props.history.push(`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${topic.id}`)
+                                   this.setState(
+                                   {
+                                       selectedTopicId: topic.id
+                                   })}}
+                               key={topic.id}>
+                               <a className={`nav-link ${(this.state.editingTopicId
+                                                          === topic.id
+                                                          || this.state.selectedTopicId
+                                                          === topic.id)
+                                                         ? 'active'
+                                                         : ''}`}>
+                                   {this.state.editingTopicId !== topic.id &&
+                                    <span>{topic.title}</span>}
+                                   {this.state.editingTopicId === topic.id &&
+                                    <input
+                                        onChange={(e) => {
+                                            const newTitle = e.target.value
+                                            this.setState(
+                                                prevState => ({
+                                                    topic: {
+                                                        ...prevState.topic,
+                                                        title: newTitle
+                                                    }
+                                                }))
+                                        }}
+                                        value={this.state.topic.title}/>}
+                                   {
+                                       this.state.editingTopicId === topic.id &&
+                                       <button
+                                           className="btn-remove wbdv-button wbdv-save-course"
+                                           onClick={() => {
+                                               this.props.updateTopic(
+                                                   this.state.topic)
+                                               this.setState(
+                                                   {
+                                                       editingTopicId: ''
+                                                   })
+                                               this.componentDidMount()
+                                               this.componentDidMount()
+                                               this.componentDidMount()
 
-                                                                                       }
-                                                                                       }><i
-                                                                                       className="material-icons size">done</i>
-                                                                                   </button>
-                                                                               }
-                                                                               {
-                                                                                   this.state.editingTopicId === topic._id &&
-                                                                                   <button
-                                                                                       aria-label="Close"
-                                                                                       className="close wbdv-module-item-delete-btn"
-                                                                                       type="button"
-                                                                                       onClick={() => this.props.deleteTopic(
-                                                                                           topic._id)}>
-                                                                                       <span
-                                                                                           aria-hidden="true">{String.fromCharCode(
-                                                                                           215)}</span>
-                                                                                   </button>
-                                                                               }
+                                           }
+                                           }><i
+                                           className="material-icons size">done</i>
+                                       </button>
+                                   }
+                                   {
+                                       this.state.editingTopicId === topic.id &&
+                                       <button
+                                           aria-label="Close"
+                                           className="close wbdv-module-item-delete-btn"
+                                           type="button"
+                                           onClick={() => {
+                                               this.props.deleteTopic(topic.id).then()
+                                           }
+                                           }>
+                                           <span
+                                               aria-hidden="true">{String.fromCharCode(
+                                               215)}</span>
+                                       </button>
+                                   }
 
-                                                                               {
-                                                                                   this.state.editingTopicId !== topic._id &&
-                                                                                   <button
-                                                                                       className="btn-remove wbdv-button wbdv-edit-course wbdv-edit-course-right"
-                                                                                       onClick={() => {
-                                                                                           this.props.history.push(`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${topic._id}`)
-                                                                                           this.setState(
-                                                                                               {
-                                                                                                   topic: topic,
-                                                                                                   editingTopicId: topic._id
-                                                                                               })
-                                                                                       }}>
-                                                                                       <i className="material-icons">
-                                                                                           edit
-                                                                                       </i>
-                                                                                   </button>
-                                                                               }
-                                                                           </a>
-                                                                       </li>
+                                   {
+                                       this.state.editingTopicId !== topic.id &&
+                                       <button
+                                           className="btn-remove wbdv-button wbdv-edit-course wbdv-edit-course-right"
+                                           onClick={() => {
+                                               this.props.history.push(`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${topic.id}`)
+                                               this.setState(
+                                                   {
+                                                       topic: topic,
+                                                       editingTopicId: topic.id
+                                                   })
+                                           }}>
+                                           <i className="material-icons">
+                                               edit
+                                           </i>
+                                       </button>
+                                   }
+                               </a>
+                           </li>
                         )
                     }
                     <li className="nav-item">
@@ -140,7 +140,7 @@ const dispatcherToPropertyMapper = (dispatcher) => ({
                                            topics: topics
                                        })),
     updateTopic: (topic) => {
-        fetch(`${TOPIC_API_URL}/${topic._id}`, {
+        fetch(`${TOPIC_API_URL}/${topic.id}`, {
             method: "PUT",
             body: JSON.stringify(topic),
             headers: {
@@ -149,7 +149,7 @@ const dispatcherToPropertyMapper = (dispatcher) => ({
         }).then(response => response.json()).then(actualTopic => dispatcher({
                                                                                 type: 'UPDATE_TOPIC',
                                                                                 topic: actualTopic,
-                                                                                topicId: actualTopic._id
+                                                                                topicId: actualTopic.id
                                                                             }))
     },
 

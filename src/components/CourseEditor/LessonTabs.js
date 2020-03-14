@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {LESSONS_API_URL, MODULES_LESSONS_API_URL} from "../../common/constants";
+import {MODULES_LESSONS_API_URL,LESSON_API_URL} from "../../common/constants";
 import "../../stylesheets/coursehome.css"
 
 class LessonTabs extends React.Component {
@@ -118,7 +118,7 @@ const dispatcherToPropertyMapper = (dispatcher) => ({
                                             lessons: lessons
                                         })),
     updateLesson: (lesson) => {
-        fetch(`${LESSONS_API_URL}/${lesson._id}`, {
+        fetch(`${LESSON_API_URL}/${lesson._id}`, {
             method: "PUT",
             body: JSON.stringify(lesson),
             headers: {
@@ -144,7 +144,7 @@ const dispatcherToPropertyMapper = (dispatcher) => ({
                                      lesson: actualLesson
                                  })),
     deleteLesson: (lessonId) =>
-        fetch(`${LESSONS_API_URL}/${lessonId}`, {
+        fetch(`${LESSON_API_URL}/${lessonId}`, {
             method: 'DELETE'
         }).then(response => response.json())
             .then(status =>
@@ -153,7 +153,7 @@ const dispatcherToPropertyMapper = (dispatcher) => ({
                                      lessonId: lessonId
                                  })),
     findAllLessons: () =>
-        fetch(LESSONS_API_URL)
+        fetch(LESSON_API_URL)
             .then(response => response.json())
             .then(lessons =>
                       dispatcher({

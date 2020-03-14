@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
 import HeadingWidget from "../CourseEditor/widgets/HeadingWidget"
 import ParagraphWidget from "../CourseEditor/widgets/ParagraphWidget";
+import ImageWidget from "../CourseEditor/widgets/ImageWidget";
+import ListWidget from "../CourseEditor/widgets/ListWidget";
 import "./widgetStyle.css"
 import "./CourseEditor.css"
 import {connect} from "react-redux";
@@ -24,27 +26,30 @@ class WidgetLists extends Component {
         }
     }
     componentDidMount() {
-        this.props.findWidgetsForTopic(this.props.topicId).then()
+        if(!this.props.topicId) {
+            return []
+        }
+       this.props.findWidgetsForTopic(this.props.topicId)
     }
     componentDidUpdate(prevProps, prevState, snapshot){
+        if(prevProps.topicId !== this.props.topicId) {
+            this.props.findWidgetsForTopic(this.props.topicId)
+        }
         if(this.state.updated) {
             this.setState({
                               updated: false
                           })
         }
-        if(prevProps.topicId !== this.props.topicId) {
-            this.props.findWidgetsForTopic(this.props.topicId).then()
-        }
-
-
     }
     updateHeadingWidget = (widget) =>
     {
         let newHeading = document.getElementById(widget.id+'-heading').value
         let newSize = document.getElementById(widget.id+'-size').value
+        let newName = document.getElementById(widget.id+'-title').value
 
         widget.text = newHeading
         widget.size = newSize
+        widget.name = newName
         this.setState({
                           updated: true
                       })
@@ -63,9 +68,39 @@ class WidgetLists extends Component {
     {
         let type = document.getElementById(widget.id+'-selector').value
         widget.type = type
+        if(type === 'LIST')
+        {
+            widget.text = 'Text 1,Text 2'
+            widget.style = 'ul'
+        }
         this.props.updateWidget(widget.id,widget).then()
         this.componentDidMount()
         this.componentDidMount()
+    }
+
+    updateImageWidget = (widget) =>
+    {
+        let newHeading = document.getElementById(widget.id+'-name').value
+        let newUrl = document.getElementById(widget.id+'-src').value
+        widget.name = newHeading
+        widget.url = newUrl
+        this.setState({
+                          updated: true
+                      })
+        this.props.updateWidget(widget.id,widget)
+    }
+    updateListWidget = (widget) =>
+    {
+        let name = document.getElementById(widget.id+'-name').value
+        let items = document.getElementById(widget.id+'-items').value
+        let listType = document.getElementById(widget.id+'-listtyp').value
+        widget.name = name
+        widget.style = listType
+        widget.text =items
+        this.setState({
+                          updated: true
+                      })
+        this.props.updateWidget(widget.id,widget)
     }
 
     previewToggle = () =>
@@ -137,6 +172,8 @@ class WidgetLists extends Component {
                                                                <select className="ml-2" id={widget.id+'-selector'} defaultValue="HEADING" value={widget.type} onChange={()=>this.updateType(widget)}>
                                                                    <option value="HEADING" >Heading</option>
                                                                    <option value="PARAGRAPH">Paragraph</option>
+                                                                   <option value="LIST" >List</option>
+                                                                   <option value="IMAGE" >Image</option>
                                                                </select>
                                                                <button className="ml-2 col-1 p-1 btn btn-danger" onClick={() => this.removeWidget(widget.id,widget.type)}>
                                                                    <i className="fa fa-times-circle"></i>
@@ -152,6 +189,12 @@ class WidgetLists extends Component {
                                                            {widget.type === "PARAGRAPH" && <ParagraphWidget updateParagraphWidget={this.updateParagraphWidget}
                                                                                                                   widget={widget}
                                                                                                             preview={this.state.preview}/>}
+                                                           {widget.type === "IMAGE" && <ImageWidget updateImageWidget={this.updateImageWidget}
+                                                                                                          widget={widget}
+                                                                                                    preview={this.state.preview}/>}
+                                                           {widget.type === "LIST" && <ListWidget updateListWidget={this.updateListWidget}
+                                                                                                        widget={widget}
+                                                                                                  preview={this.state.preview}/>}
                                                        </div>
                                                    </li>
 
@@ -207,8 +250,7 @@ const dispatchToPropertyMapper = (dispatcher) => ({
         createWidget(topicId,{
                          title: "New Widget",
                          type: "HEADING",
-                         topicId: topicId,
-                         id: (new Date()).getTime() + ""
+                         topic_id: topicId
                      })
             .then(actualWidget => dispatcher({
                                                  type: "ADD_WIDGET",
