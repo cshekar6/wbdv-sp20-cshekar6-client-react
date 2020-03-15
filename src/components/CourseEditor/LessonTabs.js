@@ -66,6 +66,8 @@ class LessonTabs extends React.Component {
                                              this.componentDidMount()
                                              this.componentDidMount()
                                              this.componentDidMount()
+                                             this.componentDidMount()
+                                             this.componentDidMount()
 
                                          }
                                          }><i className="material-icons size">done</i>
