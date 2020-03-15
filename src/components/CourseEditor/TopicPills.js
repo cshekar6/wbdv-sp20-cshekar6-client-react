@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 
 class TopicPills extends React.Component {
     componentDidMount() {
-        this.props.findTopicsForLesson(this.props.lessonId)
+        this.props.findTopicsForLesson(this.props.lessonId).then()
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -76,6 +76,7 @@ class TopicPills extends React.Component {
                                                        editingTopicId: ''
                                                    })
                                                this.updateTopicList()
+                                               this.componentDidMount()
                                                this.componentDidMount()
                                                this.componentDidMount()
                                                this.componentDidMount()
