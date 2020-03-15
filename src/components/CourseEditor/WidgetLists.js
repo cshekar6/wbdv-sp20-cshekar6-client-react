@@ -76,6 +76,8 @@ class WidgetLists extends Component {
         this.props.updateWidget(widget.id,widget).then()
         this.componentDidMount()
         this.componentDidMount()
+        this.componentDidMount()
+        this.componentDidMount()
     }
 
     updateImageWidget = (widget) =>
