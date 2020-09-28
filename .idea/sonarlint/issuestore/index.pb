@@ -57,3 +57,11 @@ f
 6src/components/CourseEditor/widgets/ParagraphWidget.js,c/c/cc400b76579b7e0b580c9c92672e172e1ac0b198
 Z
 *src/components/CourseEditor/WidgetLists.js,f/5/f58f7e31d6f74092a69f484fa52346c4dd0e3f87
+b
+2src/components/CourseEditor/widgets/ImageWidget.js,c/1/c11f74a53b32e1e92a9c4159d4a998305359a0f6
+a
+1src/components/CourseEditor/widgets/ListWidget.js,c/5/c56ad2d1c3a9ae5dfab3e2178356bc722d22f52e
+<
+package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
+L
+src/reducers/topicReducer.js,1/9/195fc9951e777abdd191b035fd819290615cf071
